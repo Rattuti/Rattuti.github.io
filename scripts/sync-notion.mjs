@@ -8,7 +8,7 @@ import path from "node:path";
 
 const NOTION_VERSION = "2022-06-28";
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const DATABASE_ID = process.env.NOTION_DATABASE_ID || "4a1c723164dc48bf9c332ad8ed542168";
+const DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const GH_USER = process.env.GITHUB_REPOSITORY_OWNER || "Rattuti";
 
 const OUT_PATH = path.resolve(
