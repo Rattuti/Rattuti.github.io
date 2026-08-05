@@ -198,6 +198,19 @@
     border-radius: 999px;
     padding: 0.12rem 0.6rem;
   }
+  .card .notion-hint {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-left: 0.4rem;
+  }
+  .card-disabled {
+    cursor: default;
+  }
+  .card-disabled:hover {
+    background: var(--panel);
+    border-color: var(--border);
+  }
 
   .empty, .loading {
     color: var(--muted);
@@ -330,11 +343,14 @@
 
       list.forEach(function (app) {
         cardCounter++;
-        var card = document.createElement("a");
-        card.className = "card";
-        card.href = app.url || "#";
-        card.target = "_blank";
-        card.rel = "noopener";
+        var hasHref = !!app.href;
+        var card = document.createElement(hasHref ? "a" : "div");
+        card.className = "card" + (hasHref ? "" : " card-disabled");
+        if (hasHref) {
+          card.href = app.href;
+          card.target = "_blank";
+          card.rel = "noopener";
+        }
 
         if (cardCounter <= 9) {
           var num = document.createElement("span");
@@ -360,6 +376,13 @@
           cat.className = "category";
           cat.textContent = app.category;
           card.appendChild(cat);
+        }
+
+        if (!app.url) {
+          var notionHint = document.createElement("span");
+          notionHint.className = "notion-hint";
+          notionHint.textContent = "Notionで確認";
+          card.appendChild(notionHint);
         }
 
         grid.appendChild(card);
@@ -402,8 +425,8 @@
 
   function launch(index) {
     var entry = visibleCards[index];
-    if (!entry || !entry.app.url) return;
-    window.open(entry.app.url, "_blank", "noopener");
+    if (!entry || !entry.app.href) return;
+    window.open(entry.app.href, "_blank", "noopener");
   }
 
   function isEditableTarget(el) {
@@ -469,17 +492,21 @@
     }).then(function (data) {
       if (!Array.isArray(data)) throw new Error("apps.json is not an array");
       return data.map(function (item) {
+        var url = item.URL || item.url || "";
+        var notionUrl = item.notionURL || item.notionUrl || item.notion_url || "";
         return {
           name: item.名前 || item.name || "",
           status: item.状態 || item.status || "",
           repo: item.リポジトリ || item.repo || "",
-          url: item.URL || item.url || buildUrlFromRepo(item.リポジトリ || item.repo),
+          url: url,
+          notionUrl: notionUrl,
+          href: url || notionUrl || "",
           category: item.カテゴリ || item.category || "",
           description: item.説明 || item.description || "",
           order: typeof item.表示順 === "number" ? item.表示順 :
             (typeof item.order === "number" ? item.order : 999999)
         };
-      });
+      }).filter(function (app) { return app.repo !== PORTAL_REPO; });
     });
   }
 
@@ -494,11 +521,14 @@
         return repos
           .filter(function (r) { return r.name !== PORTAL_REPO && !r.fork; })
           .map(function (r, i) {
+            var url = r.homepage || buildUrlFromRepo(r.name);
             return {
               name: r.name,
               status: "公開中",
               repo: r.name,
-              url: r.homepage || buildUrlFromRepo(r.name),
+              url: url,
+              notionUrl: "",
+              href: url,
               category: "その他",
               description: r.description || "",
               order: i
