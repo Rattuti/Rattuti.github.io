@@ -492,12 +492,17 @@
   function formatUpdated(iso) {
     var d = new Date(iso);
     if (!iso || isNaN(d.getTime())) return "";
-    var fmt = new Intl.DateTimeFormat("ja-JP", {
+    var parts = new Intl.DateTimeFormat("ja-JP", {
       timeZone: "Asia/Tokyo",
-      year: "numeric", month: "2-digit", day: "2-digit",
-      hour: "2-digit", minute: "2-digit"
-    });
-    return fmt.format(d) + " JST";
+      month: "2-digit", day: "2-digit",
+      hour: "2-digit", minute: "2-digit",
+      hour12: false
+    }).formatToParts(d);
+    var get = function (type) {
+      var p = parts.filter(function (part) { return part.type === type; })[0];
+      return p ? p.value : "";
+    };
+    return get("month") + "/" + get("day") + " " + get("hour") + ":" + get("minute");
   }
 
   function buildUrlFromRepo(repo) {
@@ -568,7 +573,7 @@
       allApps = apps;
       render();
       var formatted = formatUpdated(lastUpdated);
-      syncInfoEl.textContent = formatted ? "最終同期: " + formatted : "";
+      syncInfoEl.textContent = formatted ? "最終同期 " + formatted : "";
     })
     .catch(function (err) {
       console.error(err);
