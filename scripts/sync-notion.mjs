@@ -93,6 +93,7 @@ function toApp(page) {
     状態: status,
     リポジトリ: repo,
     URL: url,
+    NotionURL: page.url || "",
     カテゴリ: readProperty(props, "カテゴリ") || "",
     説明: readProperty(props, "説明") || "",
     表示順: readProperty(props, "表示順")
@@ -112,7 +113,12 @@ async function main() {
       return a.名前.localeCompare(b.名前, "ja");
     });
 
-  await writeFile(OUT_PATH, JSON.stringify(apps, null, 2) + "\n", "utf-8");
+  const output = {
+    updated: new Date().toISOString(),
+    apps
+  };
+
+  await writeFile(OUT_PATH, JSON.stringify(output, null, 2) + "\n", "utf-8");
   console.log(`Wrote ${apps.length} apps to ${OUT_PATH}`);
 }
 
