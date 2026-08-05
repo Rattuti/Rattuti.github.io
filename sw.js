@@ -1,4 +1,4 @@
-const CACHE_NAME = "dougudana-v1";
+const CACHE_NAME = "dougudana-v2";
 const APP_SHELL = [
   "./",
   "./index.html",
