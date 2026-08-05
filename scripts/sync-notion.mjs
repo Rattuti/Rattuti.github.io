@@ -85,11 +85,12 @@ function buildUrl(repo) {
 function toApp(page) {
   const props = page.properties;
   const repo = readProperty(props, "リポジトリ") || "";
-  const url = readProperty(props, "URL") || buildUrl(repo);
+  const status = readProperty(props, "状態") || "";
+  const url = status === "公開中" ? (readProperty(props, "URL") || buildUrl(repo)) : "";
 
   return {
     名前: readProperty(props, "名前") || "",
-    状態: readProperty(props, "状態") || "",
+    状態: status,
     リポジトリ: repo,
     URL: url,
     カテゴリ: readProperty(props, "カテゴリ") || "",
