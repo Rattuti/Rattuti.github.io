@@ -22,6 +22,11 @@ if (!NOTION_TOKEN) {
   process.exit(1);
 }
 
+if (!DATABASE_ID) {
+  console.error("NOTION_DATABASE_ID environment variable is not set.");
+  process.exit(1);
+}
+
 function plainText(richTextArray) {
   if (!Array.isArray(richTextArray)) return "";
   return richTextArray.map((t) => t.plain_text || "").join("");
