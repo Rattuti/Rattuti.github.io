@@ -365,6 +365,7 @@
           var num = document.createElement("span");
           num.className = "num";
           num.textContent = String(cardCounter);
+          num.setAttribute("aria-hidden", "true");
           card.appendChild(num);
         }
 
