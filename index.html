@@ -237,6 +237,15 @@
     text-align: center;
   }
 
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
   .fallback-note {
     margin: 0 0 1rem;
     padding: 0.6rem 0.9rem;
@@ -405,6 +414,13 @@
           notionHint.className = "notion-hint";
           notionHint.textContent = "Notionで確認";
           card.appendChild(notionHint);
+        }
+
+        if (hasHref) {
+          var srHint = document.createElement("span");
+          srHint.className = "visually-hidden";
+          srHint.textContent = "(新しいタブで開きます)";
+          card.appendChild(srHint);
         }
 
         grid.appendChild(card);
