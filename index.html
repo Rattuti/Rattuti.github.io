@@ -8,36 +8,45 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="theme-color" content="#16255A">
+<meta name="theme-color" content="#1f5f5b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Shippori+Mincho+B1:wght@700&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
 <style>
+  /* デザインシステム「Rattuti」(https://claude.ai/artifact/HgyoHw9iX2C3CQwf3eYiJm)に合わせた色 */
   :root {
-    --bg: #f5f3ee;
-    --panel: #ffffff;
-    --panel-hover: #fbfaf7;
-    --text: #1c1d21;
-    --muted: #6b6b70;
-    --border: #e4dfd2;
-    --accent: #16255A;
-    --accent-fg: #ffffff;
-    --highlight: #b9840f;
-    --highlight-bg: #f4e6c4;
-    --shadow: 0 1px 2px rgba(22,37,90,0.06), 0 1px 1px rgba(22,37,90,0.04);
-    --focus-ring: #16255A;
+    --bg: #f6f7f5;          /* surface */
+    --panel: #ffffff;       /* surface-raised */
+    --panel-hover: #eef3f1;
+    --text: #1d2524;        /* ink */
+    --muted: #56625f;       /* ink-muted */
+    --border: #d5dbd8;      /* line */
+    --accent: #1f5f5b;      /* brand */
+    --accent-fg: #ffffff;   /* on-brand */
+    --tint: #e2edea;        /* brand-tint */
+    --highlight: #c9922a;   /* accent(芥子) */
+    --highlight-bg: #f3e6c8;
+    --shadow: none;         /* 影は使わない。区切りは罫線で */
+    --focus-ring: #1f5f5b;
+    --font-display: "Shippori Mincho B1", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    --font-sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #0d1220;
-      --panel: #161b2c;
-      --panel-hover: #1c2236;
-      --text: #eae6da;
-      --muted: #9aa0b4;
-      --border: #262c42;
-      --accent: #7b8bd6;
-      --accent-fg: #0d1220;
-      --highlight: #e8b93a;
-      --highlight-bg: #3a2f10;
-      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 1px 1px rgba(0,0,0,0.2);
-      --focus-ring: #e8b93a;
+      --bg: #151a19;
+      --panel: #1e2423;
+      --panel-hover: #232b2a;
+      --text: #e6ebe9;
+      --muted: #a1adaa;
+      --border: #333b39;
+      --accent: #72bcb2;
+      --accent-fg: #151a19;
+      --tint: #1f3331;
+      --highlight: #e0b04a;
+      --highlight-bg: #3a3018;
+      --shadow: none;
+      --focus-ring: #e0b04a;
     }
   }
 
@@ -46,7 +55,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", "Segoe UI", sans-serif;
+    font-family: var(--font-sans);
     line-height: 1.5;
     min-height: 100vh;
   }
@@ -57,7 +66,8 @@
     margin: 0 auto;
   }
   header h1 {
-    font-size: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
     font-weight: 700;
     margin: 0 0 0.9rem;
     letter-spacing: 0.02em;
@@ -68,7 +78,7 @@
   header h1 .mark {
     width: 1.4rem;
     height: 1.4rem;
-    border-radius: 5px;
+    border-radius: 4px;
     background: var(--accent);
     flex: none;
   }
@@ -80,10 +90,11 @@
     width: 100%;
     font-size: 1rem;
     padding: 0.7rem 0.9rem 0.7rem 2.4rem;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--panel);
     color: var(--text);
+    font-family: inherit;
     outline: none;
     transition: border-color 0.15s;
   }
@@ -156,7 +167,7 @@
     position: relative;
     display: block;
     padding: 1rem 1.1rem;
-    border-radius: 12px;
+    border-radius: 8px;
     border: 1px solid var(--border);
     background: var(--panel);
     box-shadow: var(--shadow);
@@ -177,6 +188,7 @@
     position: absolute;
     top: 0.6rem;
     right: 0.65rem;
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     color: var(--muted);
     background: var(--bg);
@@ -200,8 +212,8 @@
     display: inline-block;
     font-size: 0.72rem;
     color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 10%, transparent);
-    border-radius: 999px;
+    background: var(--tint);
+    border-radius: 4px;
     padding: 0.12rem 0.6rem;
   }
   .card .notion-hint {
@@ -230,7 +242,7 @@
     padding: 0.6rem 0.9rem;
     border-radius: 8px;
     border: 1px solid var(--border);
-    background: var(--highlight-bg);
+    background: var(--tint);
     color: var(--text);
     font-size: 0.8rem;
   }
