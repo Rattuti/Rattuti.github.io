@@ -1,14 +1,14 @@
 {
-  "updated": "2026-11-22T00:48:28.538Z",
+  "updated": "2026-11-22T03:30:16.105Z",
   "apps": [
     {
-      "名前": "引越しプランナー",
+      "名前": "引っ越しプランナー",
       "状態": "公開中",
       "リポジトリ": "hikkoshi-planner",
       "URL": "https://rattuti.github.io/hikkoshi-planner/",
       "NotionURL": "https://app.notion.com/p/3adf405fb2198142aaffd9628d20cfbe",
       "カテゴリ": "暮らし",
-      "説明": "引越しの段取りと部屋寸法を整理する",
+      "説明": "引っ越しの段取りと部屋寸法を整理する",
       "表示順": 1
     },
     {
@@ -52,7 +52,7 @@
       "表示順": 3.5
     },
     {
-      "名前": "部屋の整理アプリ",
+      "名前": "お部屋整理チェッカー",
       "状態": "公開中",
       "リポジトリ": "heya-seiri-app",
       "URL": "https://rattuti.github.io/heya-seiri-app/",
@@ -62,6 +62,16 @@
       "表示順": 4
     },
     {
+      "名前": "家族旅行プランナー",
+      "状態": "公開中",
+      "リポジトリ": "ryokou-planner",
+      "URL": "https://rattuti.github.io/ryokou-planner/",
+      "NotionURL": "https://app.notion.com/p/3b3f405fb2198170893bf3c8f8230f79",
+      "カテゴリ": "暮らし",
+      "説明": "旅行の行程と持ち物を整理する",
+      "表示順": 5
+    },
+    {
       "名前": "株ポートフォリオ管理",
       "状態": "構想",
       "リポジトリ": "kabu-portfolio",
@@ -69,16 +79,6 @@
       "NotionURL": "https://app.notion.com/p/3adf405fb21981d8bfcee4b5d3da7ad1",
       "カテゴリ": "お金",
       "説明": "保有銘柄の追跡・逆指値アラート・ニュース連動調査",
-      "表示順": 5
-    },
-    {
-      "名前": "旅行プランナー",
-      "状態": "公開中",
-      "リポジトリ": "ryokou-planner",
-      "URL": "https://rattuti.github.io/ryokou-planner/",
-      "NotionURL": "https://app.notion.com/p/3b3f405fb2198170893bf3c8f8230f79",
-      "カテゴリ": "暮らし",
-      "説明": "旅行の行程と持ち物を整理する",
       "表示順": 5
     },
     {
@@ -102,7 +102,7 @@
       "表示順": 6
     },
     {
-      "名前": "株リサーチ",
+      "名前": "株式調査ノート",
       "状態": "公開中",
       "リポジトリ": "kabu-research",
       "URL": "https://rattuti.github.io/kabu-research/",
@@ -150,6 +150,16 @@
       "カテゴリ": "暮らし",
       "説明": "無料に近く勧誘や詐欺にあいにくい場を探し、怪しさを確かめて記録する",
       "表示順": 10
+    },
+    {
+      "名前": "確定申告集計ツール",
+      "状態": "公開中",
+      "リポジトリ": "kakutei-shinkoku-app",
+      "URL": "https://rattuti.github.io/kakutei-shinkoku-app/",
+      "NotionURL": "https://app.notion.com/p/420f405fb21981d5ae89e3c9edccacec",
+      "カテゴリ": "お金",
+      "説明": "事業所得の収支を科目ごとに集計し、青色申告特別控除の要件を判定する",
+      "表示順": 16
     }
   ]
 }
